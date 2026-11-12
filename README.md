@@ -6,7 +6,7 @@ world news"** (https://make.fun/bounty/news-summary-01).
 `main.py` (Python 3.13, standard library only, no network) writes one
 summary of the world's news of Wednesday 11 November 2026 to
 `$MAKEFUN_OUTPUT_DIR/entry.txt` (default `/output/entry.txt`). The summary
-is a fixed 1,981-character text, so two runs write identical bytes.
+is a fixed 1,959-character text, so two runs write identical bytes.
 
 Run it:
 

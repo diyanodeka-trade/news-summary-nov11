@@ -17,7 +17,7 @@ What the page actually says:
 - **Program output:** one summary, in English, written to
   `/output/entry.txt`.
 - **Summary constraints:** UTF-8 text, **1 to 2,000 characters**, not only
-  white space. Ours: **1,981 characters** (19 chars of headroom — any edit
+  white space. Ours: **1,959 characters** (41 chars of headroom — any edit
   must re-check the length).
 - **Determinism:** no network; the program runs twice and both runs must
   write the same bytes. Verified locally: two runs byte-identical and equal
