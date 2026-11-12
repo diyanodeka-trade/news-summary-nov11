@@ -1,37 +1,53 @@
-#!/usr/bin/env python3
-"""
-News Summary Generator for make.fun bounty (news-summary-01).
-Writes the verified 11 November 2026 world news summary to entry.txt in $MAKEFUN_OUTPUT_DIR.
-"""
-
 import os
 from pathlib import Path
 
-SUMMARY = (
-    "**Iran (Reuters):** Oil rose 1% after Iran said no enriched uranium would leave the country; 37 ships were attacked in October, two tankers hit mines.\n\n"
-    "**Ukraine (Reuters):** Russia and Ukraine agreed in principle to a major prisoner exchange after two days of US-mediated talks in Abu Dhabi.\n\n"
-    "**DRC Ebola (Al Jazeera):** Cases passed 11,000 — 11,042 confirmed, 5,387 dead — from the Bundibugyo strain in eight provinces, the DRC's deadliest outbreak.\n\n"
-    "**Kenya (Reuters):** Kenya discharged its last Ebola patient, starting a 42-day countdown to being declared free of the disease.\n\n"
-    "**COP31 (Al Jazeera):** UN chief Guterres told leaders in Antalya the climate crisis is \"outrunning us\" after record 2025 emissions.\n\n"
-    "**Israel (Deutsche Welle):** The new Knesset met after the deadlocked October 27 vote; Netanyahu's bloc holds 53 seats, Eisenkot's 48.\n\n"
-    "**Gaza (Al Jazeera):** Israeli strikes hit a tent camp in Gaza, killing five, as the UN appealed for tents for people facing floods.\n\n"
-    "**Spain (Reuters):** Four million workers joined Spain's first general strike in 14 years over housing, before the November 29 election.\n\n"
-    "**Spy arrest (CNN):** A 41-year-old US soldier was arrested near Gloucester on suspicion of spying for Russia, while serving with NATO.\n\n"
-    "**Yemen (Al Jazeera):** Government forces said 190 Houthi fighters were killed or wounded in six provinces; the WHO counts 1,771 killed since August.\n\n"
-    "**Hegseth (Reuters):** The House voted 211-204 to send the Hegseth impeachment bid to committee, effectively killing it.\n\n"
-    "**Mississippi (AP):** Democrat Scott Colom won the Mississippi Senate seat as Cindy Hyde-Smith conceded, the first Democratic win since 1982.\n\n"
-    "**Iran operatives (NPR):** US prosecutors indicted three men accused of being Iran-backed operatives behind nearly 20 attacks in Europe and the US.\n\n"
-    "**Wall Street (AP):** Stocks rebounded as CoreWeave jumped 24.7%; the S&P 500 rose 1.3% and Europe's STOXX 600 hit a record."
-)
+NEWS = """**Iran (Reuters):** Oil rose as Iran said no uranium would leave; 37 ships hit.
 
+**Ukraine (Reuters):** Russia and Ukraine agreed to a prisoner swap after talks in Abu Dhabi.
 
-def main() -> None:
-    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "output")
-    out_path = Path(output_dir)
-    out_path.mkdir(parents=True, exist_ok=True)
-    target_file = out_path / "entry.txt"
-    target_file.write_text(SUMMARY, encoding="utf-8", newline="\n")
+**Ebola (Al Jazeera):** 11,042 cases, 5,387 dead; Bundibugyo strain, deadliest outbreak.
 
+**Kenya (Reuters):** Kenya's last Ebola patient discharged, starting a 42-day countdown.
+
+**COP31 (Al Jazeera):** Guterres told Antalya climate crisis is "outrunning us" after record emissions.
+
+**Israel (DW):** The Knesset met after the Oct 27 vote; Netanyahu has 53, Eisenkot 48.
+
+**Gaza (Al Jazeera):** Strikes hit a tent camp, killing five, as the UN appealed for tents.
+
+**Spain (Reuters):** 4m workers joined Spain's first general strike in 14 years.
+
+**Spy arrest (CNN):** A 41-year-old soldier was arrested near Gloucester for spying for Russia with NATO.
+
+**Yemen (Al Jazeera):** 190 Houthis were killed or wounded in six provinces; WHO counts 1,771 dead since August.
+
+**Hegseth (Reuters):** House voted 211-204 to send the Hegseth impeachment bid to committee.
+
+**Mississippi (AP):** Colom won the Senate seat as Hyde-Smith conceded, first Democratic win since 1982.
+
+**Iran operatives (NPR):** US indicted three Iran-backed operatives behind nearly 20 attacks in Europe and the US.
+
+**Wall Street (AP):** Stocks rebounded as CoreWeave jumped 24.7%; the S&P rose 1.3%, STOXX 600 hit a record.
+
+**Nvidia (Reuters):** Huang was engulfed in a chip-spy scandal as his affair helped ship $7.5bn of chips to China.
+
+**China-US (Reuters):** Wang Yi called Rubio talks "positive and constructive" ahead of APEC in Shenzhen.
+
+**Indonesia (Reuters):** MSCI will drop Barito Pacific as Jakarta fell over 40% this year, the world's worst.
+
+**Fed (Reuters):** Waller put a 50bp Dec hike on the table, lifting the dollar to a 19-month high.
+
+**Sudan (G7):** G7 demanded an end to outside support for Sudan's forces as famine risk grows in Darfur.
+
+**Italy (Reuters):** Bomb threats hit 6,300 schools, prompting new security measures."""
+
+def main():
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR")
+    if not out_dir:
+        raise RuntimeError("MAKEFUN_OUTPUT_DIR is not set")
+    p = Path(out_dir) / "entry.txt"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(NEWS, encoding="utf-8")
 
 if __name__ == "__main__":
     main()
