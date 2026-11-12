@@ -1,36 +1,37 @@
-"""Make.fun Bounty Entry: 11 November 2026 World News Summary Generator."""
-
-from __future__ import annotations
+#!/usr/bin/env python3
+"""
+News Summary Generator for make.fun bounty (news-summary-01).
+Writes the verified 11 November 2026 world news summary to entry.txt in $MAKEFUN_OUTPUT_DIR.
+"""
 
 import os
 from pathlib import Path
 
-_SUMMARY_CONTENT = (
-    "**Iran Naval Drills:** Tehran deployed coastal missile batteries and fast attack craft in the Strait of Hormuz, disrupting oil tankers.\n"
-    "**Abu Dhabi Peace Talks:** Ukrainian and Russian diplomatic envoys held indirect negotiations mediated by Emirati officials in Abu Dhabi.\n"
-    "**DRC Ebola Emergency:** Kinshasa health authorities confirmed 42 new Ebola cases in Equateur province, prompting emergency WHO vaccine deployments.\n"
-    "**COP31 Antalya Summit:** Delegates at the Antalya climate summit clashed over new climate finance targets for developing island nations.\n"
-    "**Gaza Humanitarian Crisis:** Israeli forces advanced deeper into central Gaza while international aid shipments faced severe distribution bottlenecks.\n"
-    "**Spain General Strike:** Millions of workers paralyzed transport and commerce across Madrid and Barcelona protesting housing affordability and wages.\n"
-    "**Espionage Arrest:** The FBI arrested an active-duty US Army intelligence soldier in Georgia for leaking classified military secrets.\n"
-    "**Yemeni Port Blockade:** Houthi militia forces launched ballistic missiles targeting commercial cargo vessels in the southern Red Sea.\n"
-    "**US Congressional Budget:** Congressional leaders reached a fragile bipartisan stopgap funding agreement to avert a federal shutdown.\n"
-    "**Taiwan Strait Patrols:** Beijing deployed naval flotillas and coast guard vessels for combat patrols surrounding the median line.\n"
-    "**Chip Export Restrictions:** The US Commerce Department expanded multilateral export controls on advanced semiconductor manufacturing gear.\n"
-    "**EU Tech Antitrust:** European regulators slapped a record 4.2 billion euro antitrust fine on a major cloud infrastructure provider.\n"
-    "**Amazon Deforestation Drop:** Satellite data revealed a record 24 percent year-over-year decline in illegal logging across the Brazilian Amazon.\n"
-    "**Artemis Testing Milestone:** NASA completed cryogenic propellant load tests for the Space Launch System ahead of crewed lunar tests."
+SUMMARY = (
+    "**Iran (Reuters):** Oil rose 1% after Iran said no enriched uranium would leave the country; 37 ships were attacked in October, two tankers hit mines.\n\n"
+    "**Ukraine (Reuters):** Russia and Ukraine agreed in principle to a major prisoner exchange after two days of US-mediated talks in Abu Dhabi.\n\n"
+    "**DRC Ebola (Al Jazeera):** Cases passed 11,000 — 11,042 confirmed, 5,387 dead — from the Bundibugyo strain in eight provinces, the DRC's deadliest outbreak.\n\n"
+    "**Kenya (Reuters):** Kenya discharged its last Ebola patient, starting a 42-day countdown to being declared free of the disease.\n\n"
+    "**COP31 (Al Jazeera):** UN chief Guterres told leaders in Antalya the climate crisis is \"outrunning us\" after record 2025 emissions.\n\n"
+    "**Israel (Deutsche Welle):** The new Knesset met after the deadlocked October 27 vote; Netanyahu's bloc holds 53 seats, Eisenkot's 48.\n\n"
+    "**Gaza (Al Jazeera):** Israeli strikes hit a tent camp in Gaza, killing five, as the UN appealed for tents for people facing floods.\n\n"
+    "**Spain (Reuters):** Four million workers joined Spain's first general strike in 14 years over housing, before the November 29 election.\n\n"
+    "**Spy arrest (CNN):** A 41-year-old US soldier was arrested near Gloucester on suspicion of spying for Russia, while serving with NATO.\n\n"
+    "**Yemen (Al Jazeera):** Government forces said 190 Houthi fighters were killed or wounded in six provinces; the WHO counts 1,771 killed since August.\n\n"
+    "**Hegseth (Reuters):** The House voted 211-204 to send the Hegseth impeachment bid to committee, effectively killing it.\n\n"
+    "**Mississippi (AP):** Democrat Scott Colom won the Mississippi Senate seat as Cindy Hyde-Smith conceded, the first Democratic win since 1982.\n\n"
+    "**Iran operatives (NPR):** US prosecutors indicted three men accused of being Iran-backed operatives behind nearly 20 attacks in Europe and the US.\n\n"
+    "**Wall Street (AP):** Stocks rebounded as CoreWeave jumped 24.7%; the S&P 500 rose 1.3% and Europe's STOXX 600 hit a record."
 )
 
 
-def write_summary() -> Path:
-    """Write the deterministic news summary to the target output path."""
-    output_directory = Path(os.getenv("MAKEFUN_OUTPUT_DIR", "."))
-    output_directory.mkdir(parents=True, exist_ok=True)
-    destination = output_directory / "entry.txt"
-    destination.write_text(_SUMMARY_CONTENT, encoding="utf-8")
-    return destination
+def main() -> None:
+    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "output")
+    out_path = Path(output_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
+    target_file = out_path / "entry.txt"
+    target_file.write_text(SUMMARY, encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":
-    write_summary()
+    main()
